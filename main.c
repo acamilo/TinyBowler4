@@ -11,18 +11,20 @@ void main()
 	int i=0;
 	char mymac[6]={0x74,0xf7,0x26,0x00,0x00,0x01};
 
-	NR_fifo fifo;
-	fifoInit(&fifo);
-	fifoPrint(&fifo);
+	V4MicroParser_state parser;
+	parser.state=align;
+	fifoInit(&parser.fifo);
+	fifoPrint(&parser.fifo);
 
 	for (i=0; i<37; i++){
- 		fifoPush(&fifo,(unsigned char)i);
-		fifoPrint(&fifo);
-		printf("Result of fifoPeek_array(&fifo,12,2):\t%X",fifoPeek_array(&fifo,12,2));
+ 		fifoPush(&parser.fifo,(unsigned char)i);
+		runParserSM(&parser);
+		/*fifoPrint(&parser.fifo);*/
+		
 
 	}
-		fifoPull(&fifo,15);
-		fifoPrint(&fifo);
+		/* fifoPull(&fifo,15); */
+		/* fifoPrint(&fifo); */
 }
 
 
