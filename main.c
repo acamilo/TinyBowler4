@@ -18,8 +18,13 @@ void main()
 
 	for (i=0; i<37; i++){
  		fifoPush(&parser.fifo,(unsigned char)i);
+		int delta=parser.fifo.inPointer;
+		printf("Pushing:\t%i\n",i);
+		fifoPrint(&parser.fifo);
 		runParserSM(&parser);
-		/*fifoPrint(&parser.fifo);*/
+		if (parser.fifo.inPointer!=delta) {printf("\nNew Contents of FIFO:");fifoPrint(&parser.fifo);}
+
+		printf("===================\n");
 		
 
 	}

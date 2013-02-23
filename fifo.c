@@ -41,7 +41,7 @@ return 0;
 }
 
 unsigned char *fifoPeek_array(NR_fifo *f, unsigned char count, unsigned char position){
-if ((position+count) < f->inPointer) return &f->buffer[position];
+if ((position+count) <= f->inPointer) return &f->buffer[position];
 return 0;
 }
 
